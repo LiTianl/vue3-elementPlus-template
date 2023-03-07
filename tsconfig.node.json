@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "types": [
+    "@types/node"
+  ],
+  "lib": [
+    "es2018"
+  ],
+  "include": ["vite.config.ts"]
+}
