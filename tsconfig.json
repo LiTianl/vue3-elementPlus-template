@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir":"./",
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -12,7 +13,10 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@/*": ["src/*"]
+    },
   },
   "types": [
     "vite/client",
