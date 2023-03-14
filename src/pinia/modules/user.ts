@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { userInfo } from '../../api'
+import { userInfo } from '@/api'
 
 export const userAccount = defineStore('userAccount', {
   state: () => ({
