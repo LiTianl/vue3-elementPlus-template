@@ -3,17 +3,28 @@ import AppMain from './components/AppMain.vue'
 import sidebar from './components/sidebar/index.vue'
 import navbar from './components/navbar/index.vue'
 import tagsview from './components/tagsview/index.vue'
+import { provide } from 'vue'
+import { storeToRefs } from 'pinia'
+import { settings } from '../pinia/modules'
+
+const defaultSettings = settings()
+const { collapse} = storeToRefs(defaultSettings)
+
+provide('collapse', collapse)
+provide('changeCollapse', defaultSettings.changeCollapse)
 </script>
 
 <template>
   <div class="app-wrapper">
     <sidebar />
     <div class="main-container">
-      <div class="flexd-header">
-        <navbar/>
-        <tagsview/>
+      <div class="flexd-header" :class="collapse ? 'collapse' : ''">
+        <navbar />
+        <tagsview />
       </div>
-      <AppMain />
+      <div id="main">
+        <AppMain />
+      </div>
     </div>
   </div>
 </template>
@@ -23,9 +34,28 @@ import tagsview from './components/tagsview/index.vue'
   display: flex;
   height: 100%;
 }
-.main-container{
+
+.main-container {
   display: flex;
   flex: 1;
   flex-direction: column;
+
+  .flexd-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    width: calc(100% - 210px);
+    background-color: #fff;
+    transition: width .3s;
+
+    &.collapse {
+      width: calc(100% - 64px);
+    }
+  }
+
+  #main {
+    padding-top: 84px;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
+import { inject } from 'vue'
 import {
   Document,
   Menu as IconMenu,
@@ -7,7 +7,8 @@ import {
   Setting,
 } from '@element-plus/icons-vue'
 
-const isCollapse = ref(false)
+const collapse = inject('collapse')
+
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -16,13 +17,13 @@ const handleClose = (key: string, keyPath: string[]) => {
 }
 </script>
 <template>
-  <div class="left" :class="isCollapse?'collapse':''">
+  <div class="left" :class="collapse?'collapse':''">
     <div class="brand">
       logo
     </div>
     <el-scrollbar>
       <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff"
-        :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+        :collapse="collapse" @open="handleOpen" @close="handleClose">
         <el-sub-menu index="1">
           <template #title>
             <el-icon>
