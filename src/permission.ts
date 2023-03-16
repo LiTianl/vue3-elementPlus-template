@@ -39,6 +39,8 @@ router.beforeEach(async (to, from, next) => {
       nprogress.done()
     }
 
+    
+
     // 配置菜单
     next()
     nprogress.done()

@@ -1,13 +1,10 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export const settings = defineStore('settings', {
-  state: () => ({
-    collapse: false
-  }),
-  actions: {
-    changeCollapse(){
-      this.collapse = !this.collapse
-      console.log(this.collapse)
-    }
-  }
+export const settings = defineStore('settings', () => {
+  
+  const collapse = ref(false)
+  const changeCollapse = () => collapse.value = !collapse.value
+
+  return { collapse, changeCollapse }
 })
