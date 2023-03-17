@@ -5,7 +5,7 @@
   <router-view />
 </template>
 
-<style>
+<style scoped>
 html,
 body,
 #app {
