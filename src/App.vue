@@ -5,7 +5,14 @@
   <router-view />
 </template>
 
-<style scoped>
+<style>
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 /* .logo {
   height: 6em;
   padding: 1.5em;
