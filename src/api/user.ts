@@ -1,10 +1,7 @@
 import request from '@/utils/request'
-console.log("🚀 ~ file: user.ts:4 ~ login ~ login:", request)
-
-export const login  = (data:{loginName:string;passWord:string}) => {
-  
+export const login = (data: { userName: string; passWord: string }) => {
   return request({
-    url: '',
+    url: '/api/login',
     method: 'post',
     data
   })
