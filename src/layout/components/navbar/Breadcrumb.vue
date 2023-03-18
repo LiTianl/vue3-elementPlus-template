@@ -1,11 +1,25 @@
 <script setup lang='ts'>
+import { onBeforeMount, ref } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
+const matched = ref()
+
+const isDashBorad =(route: { name: any; }) => {
+  const name = route && route.name
+  if (!name) return false
+  return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
+}
+onBeforeMount(() => {
+  matched.value = route.matched.filter(item => item.meta && item.meta.title)
+  if (!isDashBorad(matched.value[0])){
+    matched.value = [{path: '/dashboard', meta: {title: 'Dashboard'}}].concat(matched.value)
+  }
+})
 </script>
 <template>
   <el-breadcrumb separator="/">
-    <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-    <el-breadcrumb-item><a href="/">promotion management</a></el-breadcrumb-item>
-    <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-    <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
+    <el-breadcrumb-item v-for="item in matched" :key="item.path" :to="item.redirect?'':item.path">{{item.meta.title}}</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 <style scoped lang='scss'></style>

@@ -1,19 +1,13 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
-const dynamicTags = ref(['Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 3', 'Tag 1', 'Tag 2', 'Tag 31'])
-
-const handleClose = (tag: string) => {
-  dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
-}
+import tags from './tags.vue'
+const dynamicTags = ref([{title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}])
 </script>
 <template>
   <div class="tags-view">
     <el-scrollbar>
       <div class="tags-body">
-        <el-tag v-for="tag in dynamicTags" type="info" :key="tag" class="mx-1" closable :disable-transitions="false"
-          @close="handleClose(tag)">
-          {{ tag }}
-        </el-tag>
+        <tags :tabs="dynamicTags"/>
       </div>
     </el-scrollbar>
   </div>
@@ -25,13 +19,8 @@ const handleClose = (tag: string) => {
   .el-scrollbar{
     width: 100%;
   }
-  .tags-body {
-    display: flex;
-    margin: 4px 15px;
-    .el-tag {
-      margin: 0 2px;
-      cursor: pointer;
-    }
+  .tags-body{
+    padding: 4px 15px;
   }
 }
 </style>

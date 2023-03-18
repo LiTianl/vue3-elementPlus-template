@@ -137,7 +137,22 @@ function passwords(e) {
     /*   the main font */
     font-family: 'Abel', sans-serif;
     opacity: .95;
+    position: relative;
+
     /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+    form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 450px;
+        min-height: 500px;
+        height: auto;
+        border-radius: 5px;
+        box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+        padding: 2%;
+        background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+    }
 }
 
 
@@ -151,16 +166,7 @@ function passwords(e) {
 /* End body rules */
 
 /* Start form  attributes */
-form {
-    width: 450px;
-    min-height: 500px;
-    height: auto;
-    border-radius: 5px;
-    margin: 2% auto;
-    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
-    padding: 2%;
-    background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
-}
+
 
 /* form Container */
 form .con {
@@ -323,4 +329,5 @@ button:hover {
     100% {
         transform: translateY(5px);
     }
-}</style>
+}
+</style>

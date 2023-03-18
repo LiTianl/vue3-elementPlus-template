@@ -3,31 +3,43 @@ import layout from '@/layout/index.vue'
 export const home = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/dashboard',
     component: layout,
-    meta: {title: 'abcd'},
     children: [
       {
-        path: '/home',
-        name: 'home',
+        path: '/dashboard',
+        name: 'dashboard',
         component: () => import('@/view/home/index.vue'),
-        meta: { title: 'home' },
+        meta: { title: 'Dashboard', icon: 'dashboard' },
+      },
+      {
+        path: '/charts',
+        name: 'charts',
+        component: () => import('@/view/home/index.vue'),
+        meta: { title: 'Charts', icon: 'charts' },
       }, {
         path: '/test',
         name: 'test',
         component: () => import('@/view/home/index.vue'),
-        meta: { title: 'test' },
+        meta: { title: 'test', icon: 'test' },
+        hidden: true,
       }
     ]
   }, {
-    path: '/test',
+    path: '/document',
     component: layout,
+    meta: { title: 'Document', icon: 'documentation'},
     children: [
       {
-        path: '/test',
-        name: 'test',
+        path: '/tables',
+        name: 'tables',
         component: () => import('@/view/home/index.vue'),
-        meta: { title: 'test' },
+        meta: { title: 'Table'},
+      }, {
+        path: '/tables',
+        name: 'tables',
+        component: () => import('@/view/home/index.vue'),
+        meta: { title: 'tables'},
       }
     ]
   }

@@ -10,6 +10,7 @@ export const user = [
     path: '/register',
     name: 'register',
     component: () => import('@/view/login/index.vue'),
-    meta: { title: 'register' }
+    meta: { title: 'register' },
+    hidden: true
   }
 ]

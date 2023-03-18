@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <svg-icon v-if="icon" :icon-class="icon" />
-    <span v-if="title" slot="title">{{ title }}</span>
-  </div>
+  <svg-icon v-if="icon" :icon-class="icon" class-name="el-icon" />
+  <span v-if="title">{{ title }}</span>
 </template>
 
 <script lang="ts">
@@ -21,3 +19,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped lang="scss">
+.el-icon{
+  font-size: 18px;
+  margin-right: 5px;
+}
+</style>

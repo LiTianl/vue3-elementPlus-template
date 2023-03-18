@@ -34,7 +34,6 @@ const hasOneShowingChild = (children: Array<{ hidden: boolean }> = [], parent: R
   // 如果 没有children
   if (showings.length === 0) {
     onlyOne.value = { ...parent, noShowingChildren: true }
-    console.log(onlyOne.value)
     return true
   }
 
@@ -44,7 +43,7 @@ const hasOneShowingChild = (children: Array<{ hidden: boolean }> = [], parent: R
 </script>
 <template>
   <!-- 如果存在hidden，则不显示该菜单 -->
-  <div v-if="!item.hidden">
+  <template v-if="!item.hidden">
     <!-- 如果不存在child -->
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOne.children || onlyOne.noShowingChildren)">
       <el-menu-item :index="onlyOne.path">
@@ -56,14 +55,14 @@ const hasOneShowingChild = (children: Array<{ hidden: boolean }> = [], parent: R
       <template v-if="!item.meta">
         <sidebar-item v-for="child in item.children" :key="child.path" :item="child" />
       </template>
-      <el-sub-menu v-else>
+
+      <el-sub-menu v-else :index="item.path">
         <template #title>
           <item-view  :title="item.meta.title" :icon="item.meta.icon"/>
         </template>
         <sidebar-item v-for="child in item.children" :key="child.path" :item="child" />
       </el-sub-menu>
     </template>
-
-  </div>
+  </template>
 </template>
 <style scoped lang='scss'></style>
