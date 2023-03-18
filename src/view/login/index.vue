@@ -1,79 +1,57 @@
-
 <template>
-    <div class="overlay">
-        <!-- LOGN IN FORM by Omar Dsoky -->
-        <form>
-            <!--   con = Container  for items in the form-->
-            <div class="con">
-                <!--     Start  header Content  -->
-                <header class="head-form">
-                    <h2>Log In</h2>
-                    <!--     A welcome message or an explanation of the login form -->
-                    <p>login here using your username and password</p>
-                </header>
-                <!--     End  header Content  -->
-                <br>
-                <div class="field-set">
+  <div class="overlay">
+    <!-- LOGN IN FORM by Omar Dsoky -->
+    <form>
+      <!--   con = Container  for items in the form-->
+      <div class="con">
+        <!--     Start  header Content  -->
+        <header class="head-form">
+          <h2>Log In</h2>
+          <!--     A welcome message or an explanation of the login form -->
+          <p>login here using your username and password</p>
+        </header>
+        <!--     End  header Content  -->
+        <div class="field-set">
+          <div class="input-body">
+            <div class="icon-body"></div>
+            <input class="form-input" v-model="input" @input="inputs($event)" id="txt-input" type="text"
+                   placeholder="@UserName" required>
+          </div>
 
-                    <!--   user name -->
-                    <span class="input-item">
-                        <i class="fa fa-user-circle"></i>
-                    </span>
-                    <!--   user name Input-->
+          <div class="input-body">
+            <div class="icon-body"></div>
+            <input class="form-input" type="password" v-model="password" @input="passwords($event)"
+                   placeholder="Password" id="pwd" name="password" required>
+          </div>
 
+          <button class="log-in"> Log In</button>
+        </div>
 
-                    <input class="form-input" v-model="input" @input="inputs($event)" id="txt-input" type="text"
-                        placeholder="@UserName" required>
+        <!--   other buttons -->
+        <div class="other">
+          <!--      Forgot Password button-->
+          <button class="btn submits frgt-pass">Forgot Password</button>
+          <!--     Sign Up button -->
+          <button class="btn submits sign-up">Sign Up
+            <!--         Sign Up font icon -->
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </button>
+          <!--      End Other the Division -->
+        </div>
 
-                    <br>
+        <!--   End Conrainer  -->
+      </div>
 
-                    <!--   Password -->
-
-                    <span class="input-item">
-                        <!-- <i class="fa fa-key"></i> -->
-
-                    </span>
-                    <!--   Password Input-->
-                    <input class="form-input" type="password" v-model="password" @input="passwords($event)"
-                        placeholder="Password" id="pwd" name="password" required>
-
-                    <!--      Show/hide password  -->
-                    <span>
-                        <!-- https://api.iconify.design/fa:eye.svg?color=%23888888 -->
-                        <!-- <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i> -->
-                    </span>
-
-
-                    <br>
-                    <!--        buttons -->
-                    <!--      button LogIn -->
-                    <button class="log-in"> Log In </button>
-                </div>
-
-                <!--   other buttons -->
-                <div class="other">
-                    <!--      Forgot Password button-->
-                    <button class="btn submits frgt-pass">Forgot Password</button>
-                    <!--     Sign Up button -->
-                    <button class="btn submits sign-up">Sign Up
-                        <!--         Sign Up font icon -->
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                    </button>
-                    <!--      End Other the Division -->
-                </div>
-
-                <!--   End Conrainer  -->
-            </div>
-
-            <!-- End Form -->
-        </form>
-    </div>
+      <!-- End Form -->
+    </form>
+  </div>
 </template>
 <script setup lang='ts'>
 
 // Show/hide password onClick of button using Javascript only
 let input = '' as any
 let password = '' as any
+
 // https://stackoverflow.com/questions/31224651/show-hide-password-onclick-of-button-using-javascript-only
 
 function show() {
@@ -87,16 +65,19 @@ function hide() {
 }
 
 var pwShown = 0
+
 function inputs(e) {
   console.log('🚀 ~ file: index.vue:87 ~ inputs ~ e:', e)
   input = e.detail.value
 
 }
+
 function passwords(e) {
   console.log('🚀 ~ file: index.vue:87 ~ inputs ~ e:', e)
 
   password = e.detail.value
 }
+
 // document.getElementById("eye").addEventListener("click", function () {
 //     if (pwShown == 0) {
 //         pwShown = 1;
@@ -116,9 +97,9 @@ function passwords(e) {
 /* End Fonts */
 /* Start Global rules */
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 /* End Global rules */
@@ -126,41 +107,38 @@ function passwords(e) {
 /* Start body rules */
 
 .overlay {
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
-    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(-45deg, #000000 50%, #92e1ea 50%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 
-    font-family: 'Vibur', cursive;
-    /*   the main font */
-    font-family: 'Abel', sans-serif;
-    opacity: .95;
-    position: relative;
+  font-family: 'Vibur', cursive;
+  /*   the main font */
+  font-family: 'Abel', sans-serif;
+  opacity: .95;
+  position: relative;
 
-    /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
-    form {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        width: 450px;
-        min-height: 500px;
-        height: auto;
-        border-radius: 5px;
-        box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
-        padding: 2%;
-        background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
-    }
+  /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+  form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    min-height: 500px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+    padding: 2%;
+    background-image: linear-gradient(-225deg, #000000 50%, #92e1ea 50%);
+    //background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+  }
 }
-
 
 
 /* |||||||||||||||||||||||||||||||||||||||||||||*/
 /* //////////////////////////////////////////// */
-
-
 
 
 /* End body rules */
@@ -170,36 +148,35 @@ function passwords(e) {
 
 /* form Container */
 form .con {
-    display: -webkit-flex;
-    display: flex;
+  display: -webkit-flex;
+  display: flex;
 
-    -webkit-justify-content: space-around;
-    justify-content: space-around;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
 
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 /* the header form form */
 header {
-    margin: 2% auto 10% auto;
-    text-align: center;
+  margin: 2% auto 8% auto;
+  text-align: center;
+  color: white;
 }
 
 /* Login title form form */
 header h2 {
-    font-size: 250%;
-    font-family: 'Playfair Display', serif;
-    color: #3e403f;
+  font-size: 250%;
+  font-family: 'Playfair Display', serif;
 }
 
 /*  A welcome message or an explanation of the login form */
 header p {
-    letter-spacing: 0.05em;
+  letter-spacing: 0.05em;
 }
-
 
 
 /* //////////////////////////////////////////// */
@@ -207,61 +184,66 @@ header p {
 
 
 .input-item {
-    background: #fff;
-    color: #333;
-    padding: 14.5px 0px 15px 9px;
-    border-radius: 5px 0px 0px 5px;
+  background: #fff;
+  color: #333;
+  padding: 14.5px 0px 15px 9px;
+  border-radius: 5px 0px 0px 5px;
 }
-
 
 
 /* Show/hide password Font Icon */
 #eye {
-    background: #fff;
-    color: #333;
+  background: #fff;
+  color: #333;
 
-    margin: 5.9px 0 0 0;
-    margin-left: -20px;
-    padding: 15px 9px 19px 0px;
-    border-radius: 0px 5px 5px 0px;
+  margin: 5.9px 0 0 0;
+  margin-left: -20px;
+  padding: 15px 9px 19px 0px;
+  border-radius: 0px 5px 5px 0px;
 
-    float: right;
-    position: relative;
-    right: 1%;
-    top: -.2%;
-    z-index: 5;
+  float: right;
+  position: relative;
+  right: 1%;
+  top: -.2%;
+  z-index: 5;
 
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.input-body {
+  padding-left: 10px;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 /* inputs form  */
 input[class="form-input"] {
-    width: 240px;
-    height: 50px;
+  width: 250px;
+  height: 50px;
+  padding: 15px;
 
-    margin-top: 2%;
-    padding: 15px;
+  font-size: 16px;
+  font-family: 'Abel', sans-serif;
+  color: #5E6472;
 
-    font-size: 16px;
-    font-family: 'Abel', sans-serif;
-    color: #5E6472;
+  outline: none;
+  border: none;
 
-    outline: none;
-    border: none;
-
-    border-radius: 0px 5px 5px 0px;
-    transition: 0.2s linear;
+  border-radius: 0px 5px 5px 0px;
+  transition: 0.2s linear;
 
 }
 
 input[id="txt-input"] {
-    width: 250px;
+  width: 250px;
 }
 
 /* focus  */
 input:focus {
-    transform: translateX(-2px);
-    border-radius: 5px;
+  transform: translateX(-4px);
 }
 
 /* //////////////////////////////////////////// */
@@ -270,64 +252,65 @@ input:focus {
 /* input[type="text"] {min-width: 250px;} */
 /* buttons  */
 button {
-    display: inline-block;
-    color: #252537;
+  display: inline-block;
+  color: #252537;
 
-    width: 280px;
-    height: 50px;
+  width: 260px;
+  height: 50px;
 
-    padding: 0 20px;
-    background: #fff;
-    border-radius: 5px;
+  padding: 0 20px;
+  background: #fff;
+  border-radius: 5px;
 
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.2s linear;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s linear;
 
-    margin: 7% auto;
-    letter-spacing: 0.05em;
+  margin: 7% auto;
+  letter-spacing: 0.05em;
 }
 
 /* Submits */
 .submits {
-    width: 48%;
-    display: inline-block;
-    float: left;
-    margin-left: 2%;
+  width: 48%;
+  display: inline-block;
+  float: left;
+  margin-left: 2%;
 }
 
 /*       Forgot Password button FAF3DD  */
 .frgt-pass {
-    background: transparent;
+  background: transparent;
 }
 
 /*     Sign Up button  */
 .sign-up {
-    background: #B8F2E6;
+  background: #000000;
+  color: white;
 }
 
 
 /* buttons hover */
 button:hover {
-    transform: translatey(3px);
-    box-shadow: none;
+  transform: translatey(3px);
+  box-shadow: none;
 }
 
 /* buttons hover Animation */
 button:hover {
-    animation: ani9 0.4s ease-in-out infinite alternate;
+  animation: ani9 0.4s ease-in-out infinite alternate;
 }
 
 @keyframes ani9 {
-    0% {
-        transform: translateY(3px);
-    }
+  0% {
+    transform: translateY(3px);
+  }
 
-    100% {
-        transform: translateY(5px);
-    }
+  100% {
+    transform: translateY(5px);
+  }
 }
 </style>

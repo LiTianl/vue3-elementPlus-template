@@ -6,7 +6,7 @@ defineProps({
     required: true,
   }
 })
-const activeTab = ref(0)
+const activeTab = ref(1)
 </script>
 <template>
   <div class="tags">
@@ -20,15 +20,14 @@ const activeTab = ref(0)
 <style scoped lang='scss'>
 .tags {
   display: flex;
-  background-color: #ccc;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 8px;
   width: fit-content;
-
   .is-active {
-    background-color: white;
+    background-color: #ccf5fa !important;
     position: relative;
-    
+    &.tag>i{
+      background-color: transparent;
+    }
     &+.tag>i {
       background-color: transparent;
     }
@@ -39,25 +38,9 @@ const activeTab = ref(0)
     display: flex;
     align-items: center;
     padding: 4px 0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     cursor: pointer;
-    &::before {
-      height: 5px;
-      width: 10px;
-      content: '';
-      bottom: 0;
-      position: absolute;
-    }
-
-    &::after {
-      height: 5px;
-      width: 10px;
-      content: '';
-      bottom: 0;
-      position: absolute;
-    }
-
+    background-color: white;
+    border-radius: 8px;
     &:hover {
       >i {
         background-color: transparent;
@@ -95,6 +78,7 @@ const activeTab = ref(0)
       width: 1px;
       height: 100%;
       background-color: black;
+      transition: all .3s;
     }
 
     &:first-of-type i {
