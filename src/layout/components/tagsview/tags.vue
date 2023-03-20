@@ -6,7 +6,7 @@ defineProps({
     required: true,
   }
 })
-const activeTab = ref(1)
+const activeTab = ref(0)
 </script>
 <template>
   <div class="tags">
@@ -25,6 +25,22 @@ const activeTab = ref(1)
   .is-active {
     background-color: #ccf5fa !important;
     position: relative;
+    &::before,&::after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 10px;
+      height: 10px;
+    }
+    &::before{
+      left: -10px;
+      background: radial-gradient(circle at 0% 0%,transparent 10px,#ccf5fa 10px);
+    }
+    &::after{
+      right: -10px;
+      background: radial-gradient(circle at 100% 0%,transparent 10px,#ccf5fa 10px);
+    }
+
     &.tag>i{
       background-color: transparent;
     }
@@ -34,21 +50,19 @@ const activeTab = ref(1)
   }
 
   .tag {
-    position: relative;
     display: flex;
     align-items: center;
     padding: 4px 0;
     cursor: pointer;
     background-color: white;
-    border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     &:hover {
       >i {
         background-color: transparent;
       }
-
       background-color: #eee;
     }
-
     &:hover+.tag>i {
       background-color: transparent;
     }
