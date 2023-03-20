@@ -20,7 +20,8 @@ const dynamicTags = ref([{title: 'tags1', path: '/'}, {title: 'tags1', path: '/'
     width: 100%;
   }
   .tags-body{
-    padding: 4px 15px;
+    padding: 4px 15px 0 15px;
+    background-color: #ccf5fa;
   }
 }
 </style>

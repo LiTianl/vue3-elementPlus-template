@@ -6,7 +6,7 @@ defineProps({
     required: true,
   }
 })
-const activeTab = ref(0)
+const activeTab = ref(1)
 </script>
 <template>
   <div class="tags">
@@ -22,8 +22,9 @@ const activeTab = ref(0)
   display: flex;
   border-radius: 8px;
   width: fit-content;
+  margin-bottom: 2px;
   .is-active {
-    background-color: #ccf5fa !important;
+    background-color: white !important;
     position: relative;
     &::before,&::after{
       content: '';
@@ -34,11 +35,11 @@ const activeTab = ref(0)
     }
     &::before{
       left: -10px;
-      background: radial-gradient(circle at 0% 0%,transparent 10px,#ccf5fa 10px);
+      background: radial-gradient(circle at 0% 0%,transparent 10px,white 10px)!important;
     }
     &::after{
       right: -10px;
-      background: radial-gradient(circle at 100% 0%,transparent 10px,#ccf5fa 10px);
+      background: radial-gradient(circle at 100% 0%,transparent 10px,white 10px)!important;
     }
 
     &.tag>i{
@@ -51,17 +52,34 @@ const activeTab = ref(0)
 
   .tag {
     display: flex;
+    position: relative;
     align-items: center;
     padding: 4px 0;
     cursor: pointer;
-    background-color: white;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     &:hover {
       >i {
         background-color: transparent;
       }
-      background-color: #eee;
+      background-color: #ffffff6d;
+
+      &::before,&::after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 10px;
+      height: 10px;
+    }
+      &::before{
+      left: -10px;
+      background: radial-gradient(circle at 0% 0%,transparent 10px,#ffffff6d 10px);
+      }
+      &::after{
+        right: -10px;
+        background: radial-gradient(circle at 100% 0%,transparent 10px,#ffffff6d 10px);
+      }
+      
     }
     &:hover+.tag>i {
       background-color: transparent;
