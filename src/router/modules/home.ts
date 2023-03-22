@@ -15,7 +15,7 @@ export const home = [
       {
         path: '/charts',
         name: 'charts',
-        component: () => import('@/view/home/index.vue'),
+        component: () => import('@/view/charts/index.vue'),
         meta: { title: 'Charts', icon: 'charts' },
       }, {
         path: '/test',

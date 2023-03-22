@@ -1,13 +1,19 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
 import tags from './tags.vue'
-const dynamicTags = ref([{title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}, {title: 'tags1', path: '/'}])
+import { tags as tagStore } from '../../../pinia/modules'
+import { useRoute } from 'vue-router'
+const Store = tagStore()
+const route = useRoute()
+const closeTag =(path:string) => {
+  console.log(path)
+  Store.removeTag(path)
+}
 </script>
 <template>
   <div class="tags-view">
     <el-scrollbar>
       <div class="tags-body">
-        <tags :tabs="dynamicTags"/>
+        <tags :tabs="Store.tagList" :active="route.path" @close-tag="closeTag"/>
       </div>
     </el-scrollbar>
   </div>

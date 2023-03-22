@@ -1,19 +1,34 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
-defineProps({
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const props = defineProps({
   tabs: {
     type: Array<{ title: string, path: string }>,
     required: true,
+  },
+  active: {
+    type: String,
+    default: ''
   }
 })
-const activeTab = ref(1)
+
+const isActive = (tag: { title?: string; path: string; }) => {
+  return tag.path === props.active
+}
+
+const servlet = (item: { path: string; }) => {
+  router.push({path: item.path})
+}
+
 </script>
 <template>
   <div class="tags">
-    <div v-for="(key, index) in tabs" :key="key.title" class="tag" :class="{ 'is-active': activeTab === index }">
+    <div v-for="(key, index) in tabs" :key="key.title" class="tag" :class="isActive(key) ? 'is-active' : ''" @click="servlet(key)">
       <i></i>
       <div class="title">{{ key.title }}</div>
-      <div class="close"><svg-icon icon-class="mini-close"></svg-icon></div>
+      <div v-if="index > 0" class="close" @click="$emit('close-tag', key.path)">
+        <svg-icon icon-class="mini-close"></svg-icon>
+      </div>
     </div>
   </div>
 </template>
@@ -23,28 +38,33 @@ const activeTab = ref(1)
   border-radius: 8px;
   width: fit-content;
   margin-bottom: 2px;
+
   .is-active {
     background-color: white !important;
     position: relative;
-    &::before,&::after{
+    &::before,
+    &::after {
       content: '';
       position: absolute;
       bottom: 0;
       width: 10px;
       height: 10px;
     }
-    &::before{
+
+    &::before {
       left: -10px;
-      background: radial-gradient(circle at 0% 0%,transparent 10px,white 10px)!important;
-    }
-    &::after{
-      right: -10px;
-      background: radial-gradient(circle at 100% 0%,transparent 10px,white 10px)!important;
+      background: radial-gradient(circle at 0% 0%, transparent 10px, white 10px) !important;
     }
 
-    &.tag>i{
+    &::after {
+      right: -10px;
+      background: radial-gradient(circle at 100% 0%, transparent 10px, white 10px) !important;
+    }
+
+    &.tag>i {
       background-color: transparent;
     }
+
     &+.tag>i {
       background-color: transparent;
     }
@@ -58,29 +78,35 @@ const activeTab = ref(1)
     cursor: pointer;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+
     &:hover {
       >i {
         background-color: transparent;
       }
+
       background-color: #ffffff6d;
 
-      &::before,&::after{
-      content: '';
-      position: absolute;
-      bottom: 0;
-      width: 10px;
-      height: 10px;
-    }
-      &::before{
-      left: -10px;
-      background: radial-gradient(circle at 0% 0%,transparent 10px,#ffffff6d 10px);
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 10px;
+        height: 10px;
       }
-      &::after{
+
+      &::before {
+        left: -10px;
+        background: radial-gradient(circle at 0% 0%, transparent 10px, #ffffff6d 10px);
+      }
+
+      &::after {
         right: -10px;
-        background: radial-gradient(circle at 100% 0%,transparent 10px,#ffffff6d 10px);
+        background: radial-gradient(circle at 100% 0%, transparent 10px, #ffffff6d 10px);
       }
-      
+
     }
+
     &:hover+.tag>i {
       background-color: transparent;
     }
@@ -117,4 +143,5 @@ const activeTab = ref(1)
       display: none;
     }
   }
-}</style>
+}
+</style>

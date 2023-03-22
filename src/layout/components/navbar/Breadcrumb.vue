@@ -5,16 +5,21 @@ const route = useRoute()
 
 const matched = ref()
 
-const isDashBorad =(route: { name: any; }) => {
+const isDashBorad =(route: { name: string; }) => {
   const name = route && route.name
   if (!name) return false
   return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
 }
-onBeforeMount(() => {
+
+const getBreadcrumb = () => {
   matched.value = route.matched.filter(item => item.meta && item.meta.title)
   if (!isDashBorad(matched.value[0])){
     matched.value = [{path: '/dashboard', meta: {title: 'Dashboard'}}].concat(matched.value)
   }
+}
+
+onBeforeMount(() => {
+  getBreadcrumb()
 })
 </script>
 <template>

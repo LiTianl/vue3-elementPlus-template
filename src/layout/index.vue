@@ -7,11 +7,11 @@ import { provide } from 'vue'
 import { storeToRefs } from 'pinia'
 import { settings } from '../pinia/modules'
 
-const defaultSettings = settings()
-const { collapse} = storeToRefs(defaultSettings)
+const settingsStore = settings()
+const { collapse} = storeToRefs(settingsStore)
 
 provide('collapse', collapse)
-provide('changeCollapse', defaultSettings.changeCollapse)
+provide('changeCollapse', settingsStore.changeCollapse)
 </script>
 
 <template>
