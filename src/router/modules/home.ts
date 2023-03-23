@@ -17,12 +17,6 @@ export const home = [
         name: 'charts',
         component: () => import('@/view/charts/index.vue'),
         meta: { title: 'Charts', icon: 'charts' },
-      }, {
-        path: '/test',
-        name: 'test',
-        component: () => import('@/view/home/index.vue'),
-        meta: { title: 'test', icon: 'test' },
-        hidden: true,
       }
     ]
   }, {
@@ -36,10 +30,10 @@ export const home = [
         component: () => import('@/view/home/index.vue'),
         meta: { title: 'Table'},
       }, {
-        path: '/tables',
-        name: 'tables',
+        path: '/tables1',
+        name: 'tables1',
         component: () => import('@/view/home/index.vue'),
-        meta: { title: 'tables'},
+        meta: { title: 'Tables1'},
       }
     ]
   }

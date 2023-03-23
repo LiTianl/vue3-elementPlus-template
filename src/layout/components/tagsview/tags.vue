@@ -23,9 +23,9 @@ const servlet = (item: { path: string; }) => {
 </script>
 <template>
   <div class="tags">
-    <div v-for="(key, index) in tabs" :key="key.title" class="tag" :class="isActive(key) ? 'is-active' : ''" @click="servlet(key)">
+    <div v-for="(key, index) in tabs" :key="key.title" class="tag" :class="isActive(key) ? 'is-active' : ''" >
       <i></i>
-      <div class="title">{{ key.title }}</div>
+      <div class="title" @click="servlet(key)">{{ key.title }}</div>
       <div v-if="index > 0" class="close" @click="$emit('close-tag', key.path)">
         <svg-icon icon-class="mini-close"></svg-icon>
       </div>
@@ -74,7 +74,6 @@ const servlet = (item: { path: string; }) => {
     display: flex;
     position: relative;
     align-items: center;
-    padding: 4px 0;
     cursor: pointer;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -112,7 +111,7 @@ const servlet = (item: { path: string; }) => {
     }
 
     .title {
-      padding: 0 10px;
+      padding: 4px 10px;
     }
 
     .close {

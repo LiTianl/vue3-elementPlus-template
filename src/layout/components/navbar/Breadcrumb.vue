@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 
@@ -17,6 +17,10 @@ const getBreadcrumb = () => {
     matched.value = [{path: '/dashboard', meta: {title: 'Dashboard'}}].concat(matched.value)
   }
 }
+
+watch(route, () => {
+  getBreadcrumb()
+})
 
 onBeforeMount(() => {
   getBreadcrumb()

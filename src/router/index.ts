@@ -1,7 +1,7 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
 import { error, home, user } from './modules'
 
-export const constanRouters = [...home, ...user]
+export const constanRouters = [...home, ...user, ...error]
 
 export const asyncRouters = []
 

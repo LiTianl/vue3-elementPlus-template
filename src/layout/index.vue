@@ -39,6 +39,7 @@ provide('changeCollapse', settingsStore.changeCollapse)
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding-top: 88px;
 
   .flexd-header {
     position: fixed;
@@ -55,7 +56,7 @@ provide('changeCollapse', settingsStore.changeCollapse)
   }
 
   #main {
-    padding-top: 84px;
+    padding: 8px;
   }
 }
 </style>
