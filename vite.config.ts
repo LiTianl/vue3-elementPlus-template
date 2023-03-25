@@ -12,8 +12,15 @@ export default defineConfig({
   plugins: [
     vue(),
     viteMockServe({
-      mockPath: 'mock',
-      supportTs: true
+      mockPath: 'mock/source',
+      localEnabled: true,
+      prodEnabled: false,
+      supportTs: false,
+      injectCode: `
+          import { setupProdMockServer } from './src/mock';
+          setupProdMockServer();
+        `,
+      watchFiles: true
     }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
