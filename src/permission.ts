@@ -6,7 +6,7 @@ import getPageTitle from './utils/get-page-title'
 import {userAccount} from './pinia/modules'
 
 
-const whiteList: string[] = ['login', 'dashboard', 'charts', 'error-404'] //白名单
+const whiteList: string[] = ['login', 'dashboard', 'charts', 'error-404', 'websocket'] //白名单
 
 nprogress.configure({
   speed: 1000,  // 递增进度条的速度
