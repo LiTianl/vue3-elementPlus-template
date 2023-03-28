@@ -5,19 +5,23 @@ import Components from 'unplugin-vue-components/vite'
 import { viteMockServe } from 'vite-plugin-mock'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import viteCompression from 'vite-plugin-compression'
+
 import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     vue(),
+    viteCompression(),
     viteMockServe({
-      mockPath: 'mock/source',
+      mockPath: 'mock',
       localEnabled: true,
       prodEnabled: false,
-      supportTs: false,
+      supportTs: true,
       injectCode: `
-          import { setupProdMockServer } from './src/mock';
+          import { setupProdMockServer } from '../mock/index.ts';
           setupProdMockServer();
         `,
       watchFiles: true
@@ -40,4 +44,23 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5173',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      }
+    }
+  },
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        // 移除生产环境输出
+        // drop_console: true,
+        // drop_debugger: true,
+      }
+    }
+  }
 })

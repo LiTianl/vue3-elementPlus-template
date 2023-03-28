@@ -1,0 +1,1 @@
+import{d as s,o as a,c as n,a as o,w as e,l as t,E as l,b as r}from"./index-a950c8cc.js";const c=s({__name:"index",setup(s){const c=async()=>{const s=await t({userName:"admin",passWord:"123456"});console.log(s)};return(s,t)=>{const d=l;return a(),n("div",null,[o(d,{onClick:c},{default:e((()=>[r("login")])),_:1})])}}});export{c as default};

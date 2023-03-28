@@ -3,7 +3,7 @@ import {getItem} from './auto'
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL as string,
-  timeout: 1000,
+  timeout: 2000,
   withCredentials: true
 })
 
