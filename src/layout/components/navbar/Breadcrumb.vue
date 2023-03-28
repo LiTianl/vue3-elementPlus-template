@@ -5,7 +5,7 @@ const route = useRoute()
 
 const matched = ref()
 
-const isDashBorad =(route: { name: string; }) => {
+const isDashBorad = (route: { name: string; }) => {
   const name = route && route.name
   if (!name) return false
   return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
@@ -13,8 +13,8 @@ const isDashBorad =(route: { name: string; }) => {
 
 const getBreadcrumb = () => {
   matched.value = route.matched.filter(item => item.meta && item.meta.title)
-  if (!isDashBorad(matched.value[0])){
-    matched.value = [{path: '/dashboard', meta: {title: 'Dashboard'}}].concat(matched.value)
+  if (!isDashBorad(matched.value[0])) {
+    matched.value = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched.value)
   }
 }
 
@@ -28,7 +28,9 @@ onBeforeMount(() => {
 </script>
 <template>
   <el-breadcrumb separator="/">
-    <el-breadcrumb-item v-for="item in matched" :key="item.path" :to="item.redirect?'':item.path">{{item.meta.title}}</el-breadcrumb-item>
+    <el-breadcrumb-item v-for="item in matched" :key="item.path"
+      :to="item.redirect ? '' : item.path">{{ item.meta.title }}</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
-<style scoped lang='scss'></style>
+<style scoped lang="scss">
+</style>

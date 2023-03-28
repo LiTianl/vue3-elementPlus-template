@@ -1,59 +1,91 @@
 <template>
   <div class="overlay">
-    <!-- LOGN IN FORM by Omar Dsoky -->
-    <form>
-      <!--   con = Container  for items in the form-->
+
+    <el-form ref="formRef" :model="numberValidateForm" class="demo-ruleForm">
+      <header class="head-form">
+        <h2>Log In</h2>
+        <p>login here using your username and password</p>
+      </header>
+      <el-form-item class="from-item" prop="userName" :rules="[
+        { required: true, message: 'userName is required' },
+      ]">
+        <el-input v-model="numberValidateForm.userName" type="text" autocomplete="off" placeholder="UserName" />
+      </el-form-item>
+      <el-form-item class="from-item" prop="passWord" :rules="[
+        { required: true, message: 'passWord is required' },
+      ]">
+        <el-input v-model="numberValidateForm.passWord" type="password" autocomplete="off" placeholder="passWord"
+          show-password />
+      </el-form-item>
+      <el-form-item class="from-item">
+        <el-button type="primary" @click="submitForm(formRef)">Submit</el-button>
+        <!-- <el-button @click="resetForm(formRef)">Reset</el-button> -->
+      </el-form-item>
+    </el-form>
+
+
+    <!-- <form>
       <div class="con">
-        <!--     Start  header Content  -->
         <header class="head-form">
           <h2>Log In</h2>
-          <!--     A welcome message or an explanation of the login form -->
           <p>login here using your username and password</p>
         </header>
-        <!--     End  header Content  -->
         <div class="field-set">
           <div class="input-body">
             <div class="icon-body"></div>
-            <input class="form-input" v-model="input" @input="inputs($event)" id="txt-input" type="text"
-                   placeholder="@UserName" required>
+            <input class="form-input" v-model="input" type="text" placeholder="UserName" required>
           </div>
-
           <div class="input-body">
             <div class="icon-body"></div>
-            <input class="form-input" type="password" v-model="password" @input="passwords($event)"
-                   placeholder="Password" id="pwd" name="password" required>
+            <input class="form-input" type="password" v-model="password" placeholder="Password"  name="password"
+              required>
           </div>
-
-          <button class="log-in"> Log In</button>
+          <button class="log-in">Log In</button>
         </div>
 
-        <!--   other buttons -->
         <div class="other">
-          <!--      Forgot Password button-->
           <button class="btn submits frgt-pass">Forgot Password</button>
-          <!--     Sign Up button -->
           <button class="btn submits sign-up">Sign Up
-            <!--         Sign Up font icon -->
             <i class="fa fa-user-plus" aria-hidden="true"></i>
           </button>
-          <!--      End Other the Division -->
         </div>
-
-        <!--   End Conrainer  -->
       </div>
-
-      <!-- End Form -->
-    </form>
+    </form> -->
   </div>
 </template>
 <script setup lang='ts'>
+import { reactive, ref } from 'vue'
+import type { FormInstance } from 'element-plus'
 
-// Show/hide password onClick of button using Javascript only
+const formRef = ref<FormInstance>()
+
+const numberValidateForm = reactive({
+  userName: '',
+  passWord: ''
+})
+
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.validate((valid) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!')
+      return false
+    }
+  })
+}
+
+const resetForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.resetFields()
+}
+
+
+
+
 let input = '' as any
 let password = '' as any
-
-// https://stackoverflow.com/questions/31224651/show-hide-password-onclick-of-button-using-javascript-only
-
 function show() {
   var p: any = document.getElementById('pwd')
   p.setAttribute('type', 'text')
@@ -64,47 +96,25 @@ function hide() {
   p.setAttribute('type', 'password')
 }
 
-var pwShown = 0
-
-function inputs(e) {
-  console.log('🚀 ~ file: index.vue:87 ~ inputs ~ e:', e)
-  input = e.detail.value
-
-}
-
-function passwords(e) {
-  console.log('🚀 ~ file: index.vue:87 ~ inputs ~ e:', e)
-
-  password = e.detail.value
-}
-
-// document.getElementById("eye").addEventListener("click", function () {
-//     if (pwShown == 0) {
-//         pwShown = 1;
-//         show();
-//     } else {
-//         pwShown = 0;
-//         hide();
-//     }
-// }, false);
 
 
 </script>
-<style scoped lang="scss">
-/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
-@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
-
-/* End Fonts */
-/* Start Global rules */
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+<style lang="scss">
+.overlay {
+  .el-input {
+    &>.el-input__wrapper {
+      padding-left: 30px !important;
+      // &:focus{
+        // transform: translateX(-19px);
+      // }
+    }
+  }
 }
+</style>
 
-/* End Global rules */
 
-/* Start body rules */
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
 
 .overlay {
   width: 100%;
@@ -112,14 +122,11 @@ function passwords(e) {
   background-image: linear-gradient(-45deg, #000000 50%, #92e1ea 50%);
   background-attachment: fixed;
   background-repeat: no-repeat;
-
   font-family: 'Vibur', cursive;
-  /*   the main font */
   font-family: 'Abel', sans-serif;
   opacity: .95;
   position: relative;
 
-  /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
   form {
     position: absolute;
     top: 50%;
@@ -130,187 +137,137 @@ function passwords(e) {
     height: auto;
     border-radius: 5px;
     box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
-    padding: 2%;
     background-image: linear-gradient(-225deg, #000000 50%, #92e1ea 50%);
-    //background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+
+    .from-item {
+      width: 254px;
+      margin: 0px auto 20px auto;
+
+      .el-input {
+        height: 50px;
+
+        &>.el-input__wrapper {
+          padding-left: 30px !important;
+        }
+      }
+    }
   }
 }
 
-
-/* |||||||||||||||||||||||||||||||||||||||||||||*/
-/* //////////////////////////////////////////// */
-
-
-/* End body rules */
-
-/* Start form  attributes */
-
-
-/* form Container */
-form .con {
-  display: -webkit-flex;
-  display: flex;
-
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-
-  margin: 0 auto;
-}
-
-/* the header form form */
 header {
-  margin: 2% auto 8% auto;
   text-align: center;
   color: white;
-}
 
-/* Login title form form */
-header h2 {
-  font-size: 250%;
-  font-family: 'Playfair Display', serif;
-}
-
-/*  A welcome message or an explanation of the login form */
-header p {
-  letter-spacing: 0.05em;
-}
-
-
-/* //////////////////////////////////////////// */
-/* //////////////////////////////////////////// */
-
-
-.input-item {
-  background: #fff;
-  color: #333;
-  padding: 14.5px 0px 15px 9px;
-  border-radius: 5px 0px 0px 5px;
-}
-
-
-/* Show/hide password Font Icon */
-#eye {
-  background: #fff;
-  color: #333;
-
-  margin: 5.9px 0 0 0;
-  margin-left: -20px;
-  padding: 15px 9px 19px 0px;
-  border-radius: 0px 5px 5px 0px;
-
-  float: right;
-  position: relative;
-  right: 1%;
-  top: -.2%;
-  z-index: 5;
-
-  cursor: pointer;
-}
-
-.input-body {
-  padding-left: 10px;
-  width: fit-content;
-  height: fit-content;
-  margin-top: 10px;
-  background-color: white;
-  border-radius: 5px;
-}
-
-/* inputs form  */
-input[class="form-input"] {
-  width: 250px;
-  height: 50px;
-  padding: 15px;
-
-  font-size: 16px;
-  font-family: 'Abel', sans-serif;
-  color: #5E6472;
-
-  outline: none;
-  border: none;
-
-  border-radius: 0px 5px 5px 0px;
-  transition: 0.2s linear;
-
-}
-
-input[id="txt-input"] {
-  width: 250px;
-}
-
-/* focus  */
-input:focus {
-  transform: translateX(-4px);
-}
-
-/* //////////////////////////////////////////// */
-/* //////////////////////////////////////////// */
-
-/* input[type="text"] {min-width: 250px;} */
-/* buttons  */
-button {
-  display: inline-block;
-  color: #252537;
-
-  width: 260px;
-  height: 50px;
-
-  padding: 0 20px;
-  background: #fff;
-  border-radius: 5px;
-
-  outline: none;
-  border: none;
-
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.2s linear;
-
-  margin: 7% auto;
-  letter-spacing: 0.05em;
-}
-
-/* Submits */
-.submits {
-  width: 48%;
-  display: inline-block;
-  float: left;
-  margin-left: 2%;
-}
-
-/*       Forgot Password button FAF3DD  */
-.frgt-pass {
-  background: transparent;
-}
-
-/*     Sign Up button  */
-.sign-up {
-  background: #000000;
-  color: white;
-}
-
-
-/* buttons hover */
-button:hover {
-  transform: translatey(3px);
-  box-shadow: none;
-}
-
-/* buttons hover Animation */
-button:hover {
-  animation: ani9 0.4s ease-in-out infinite alternate;
-}
-
-@keyframes ani9 {
-  0% {
-    transform: translateY(3px);
+  h2 {
+    font-size: 250%;
+    font-family: 'Playfair Display', serif;
   }
 
-  100% {
-    transform: translateY(5px);
+  p {
+    letter-spacing: 0.05em;
   }
 }
+
+
+// .con {
+//   display: -webkit-flex;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+
+
+
+// #eye {
+//   background: #fff;
+//   color: #333;
+//   margin: 5.9px 0 0 0;
+//   margin-left: -20px;
+//   padding: 15px 9px 19px 0px;
+//   border-radius: 0px 5px 5px 0px;
+//   float: right;
+//   position: relative;
+//   right: 1%;
+//   top: -.2%;
+//   z-index: 5;
+//   cursor: pointer;
+// }
+
+// .input-body {
+//   padding-left: 30px;
+//   width: fit-content;
+//   height: fit-content;
+//   margin-top: 10px;
+//   background-color: white;
+//   border-radius: 5px;
+
+//   .form-input {
+//     width: 220px;
+//     height: 50px;
+//     font-size: 16px;
+//     font-family: 'Abel', sans-serif;
+//     color: #5E6472;
+//     outline: none;
+//     border: none;
+//     border-radius: 0px 5px 5px 0px;
+//     transition: 0.2s linear;
+//     border-color: transparent;
+
+//     &:focus {
+//       transform: translateX(-4px);
+//     }
+//   }
+// }
+
+// /* inputs form  */
+
+// // button {
+// //   display: inline-block;
+// //   color: #252537;
+// //   width: 254px;
+// //   height: 50px;
+// //   padding: 0 20px;
+// //   background: #fff;
+// //   border-radius: 5px;
+// //   outline: none;
+// //   border: none;
+// //   cursor: pointer;
+// //   text-align: center;
+// //   transition: all 0.2s linear;
+// //   margin: 7% auto;
+// //   letter-spacing: 0.05em;
+
+// //   &:hover {
+// //     transform: translatey(3px);
+// //     box-shadow: none;
+// //     animation: ani9 0.4s ease-in-out infinite alternate;
+// //   }
+// // }
+
+// .submits {
+//   width: 48%;
+//   display: inline-block;
+//   margin-left: 2%;
+// }
+
+// .frgt-pass {
+//   background: transparent;
+// }
+
+// .sign-up {
+//   background: #000000;
+//   color: white;
+// }
+
+
+// @keyframes ani9 {
+//   0% {
+//     transform: translateY(3px);
+//   }
+
+//   100% {
+//     transform: translateY(5px);
+//   }
+// }
 </style>
