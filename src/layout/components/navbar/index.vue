@@ -1,8 +1,19 @@
 <script setup lang='ts'>
 import { inject } from 'vue'
 import breadcrumb from './breadcrumb.vue'
+import { userAccount, tags } from '../../../pinia/modules'
+import { useRouter } from 'vue-router'
+const store = userAccount()
+const tagsStore = tags()
+const router = useRouter()
 const collapse = inject('collapse')
 const changeCollapse = inject<() => void>('changeCollapse')
+
+const logOut = () => {
+  store.log_out()
+  tagsStore.clearTag()
+  router.push({path: '/login'})
+}
 </script>
 <template>
   <div class="navbar">
@@ -15,13 +26,7 @@ const changeCollapse = inject<() => void>('changeCollapse')
         <el-avatar :size="40" />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>Action 1</el-dropdown-item>
-            <el-dropdown-item>
-              Action 2
-            </el-dropdown-item>
-            <el-dropdown-item>Action 3</el-dropdown-item>
-            <el-dropdown-item>Action 4</el-dropdown-item>
-            <el-dropdown-item>Action 5</el-dropdown-item>
+            <el-dropdown-item @click="logOut">Log Out</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

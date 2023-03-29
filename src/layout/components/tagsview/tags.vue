@@ -133,8 +133,8 @@ const servlet = (item: { path: string; }) => {
 
     i {
       width: 1px;
-      height: 100%;
-      background-color: black;
+      height: 60%;
+      background-color: #a8abb2;
       transition: all .3s;
     }
 

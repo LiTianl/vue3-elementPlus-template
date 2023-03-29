@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { setCookie, getCookie } from '../../utils/auto'
-
+import { setCookie, getCookie, removeCookie } from '../../utils/auto'
 
 export const tags = defineStore('tags', () => {
 
@@ -20,10 +19,16 @@ export const tags = defineStore('tags', () => {
     setCookie('menu', JSON.stringify(tagList.value))
   }
 
+  const clearTag = () => {
+    tagList.value = [{ title: 'Dashboard', path: '/dashboard', icon: 'dashboard' }]
+    removeCookie('menu')
+  }
+
   return {
     tagList,
     addTag,
-    removeTag
+    removeTag,
+    clearTag
   }
 
 })

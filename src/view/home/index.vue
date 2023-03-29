@@ -1,15 +1,13 @@
 <script setup lang='ts'>
 import { login } from '../../api/user'
-
-const submit = async() => {
-  const res = await login({userName: 'admin', passWord: '123456'})
-  console.log(res)
-}
-
+import { userAccount } from '../../pinia/modules'
+import { storeToRefs } from 'pinia'
+const store = userAccount()
+const {_introduction} = storeToRefs(store)
 </script>
 <template>
   <div>
-    <el-button @click="submit">login</el-button>
+    <h1>{{_introduction}}</h1> 
   </div>
 </template>
 <style scoped lang='scss'>

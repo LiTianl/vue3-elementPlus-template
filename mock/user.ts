@@ -1,4 +1,19 @@
 import { MockMethod } from 'vite-plugin-mock'
+
+const  users = {
+  'admin-token': {
+    roles: ['admin'],
+    introduction: 'I am a Super Admin',
+    avatar: '',
+    name: 'Super Admin'
+  },
+  'editor-token': {
+    roles: ['editor'],
+    introduction: 'I am an Editor',
+    avatar: '',
+    name: 'Normal Editor'
+  }
+}
 export default [
   {
     url: '/api/login',
@@ -7,20 +22,39 @@ export default [
     statusCode: 200,
     response: ({ body }) => {
       const { userName, passWord } = body
-      if (userName === 'admin' && passWord === '123456') {
+      if ((userName === 'admin'|| userName === 'editor')&& passWord === '123456') {
         return {
           code: 200,
           message: 'success',
           data: {
-            token: '@word(50, 100)', // @word()是mockjs的语法
-            refresh_token: '@word(50, 100)', // refresh_token是用来重新生成token的
+            token: `${userName}-token`, // @word()是mockjs的语法
           }
         }
       } else {
         return {
           code: 400,
-          message: '用户名或密码错误',
+          message: 'User name or password error.',
         }
+      }
+    }
+  }, {
+    url: '/api/userinfo',
+    method: 'GET',
+    timeout: 1000,
+    statusCode: 200,
+    response: config => {
+      const { token } = config.query
+      const info = users[token]
+      if (!info){
+        return {
+          code: 500,
+          message: 'Login failed, unable to get user details.'
+        }
+      }
+      return {
+        code: 200,
+        message: 'Login successful',
+        data: info
       }
     }
   }

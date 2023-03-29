@@ -7,9 +7,10 @@ export const login = (data: { userName: string; passWord: string }) => {
   })
 }
 
-export const userInfo = () => {
+export const userInfo = (token: string) => {
   return request({
-    url: '',
-    method: 'get'
+    url: '/api/userinfo',
+    method: 'get',
+    params: { token }
   })
 }
