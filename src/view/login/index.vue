@@ -39,7 +39,7 @@ const router = useRouter()
 
 const loading = ref(false)
 const numberValidateForm = reactive({
-  userName: 'admin',
+  userName: '',
   passWord: '123456'
 })
 
