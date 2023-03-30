@@ -23,7 +23,7 @@ const logOut = () => {
     <breadcrumb />
     <div class="right-menu">
       <el-dropdown trigger="click">
-        <el-avatar :size="40" />
+        <el-avatar :size="40" :src="store._avatar" />
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item class="dropdown-item">

@@ -4,13 +4,13 @@ const users = {
   'admin-token': {
     roles: ['admin'],
     introduction: 'I am a Super Admin',
-    avatar: '',
+    avatar: '/head_admin.webp',
     name: 'Super Admin'
   },
   'editor-token': {
     roles: ['editor'],
     introduction: 'I am an Editor',
-    avatar: '',
+    avatar: '/head_editor.webp',
     name: 'Normal Editor'
   }
 }
