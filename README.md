@@ -26,3 +26,8 @@ npm install
 # 启动服务
 npm run dev
 ```
+
+## 打包发布
+``` base
+npm run build
+```
