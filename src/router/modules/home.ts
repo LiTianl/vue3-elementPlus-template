@@ -29,6 +29,7 @@ export const home = [
   {
     path: '/document',
     component: layout,
+    redirect: '/document/tables',
     meta: { title: 'Document', icon: 'documentation' },
     children: [
       {

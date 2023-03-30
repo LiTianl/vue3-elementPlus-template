@@ -12,7 +12,7 @@ const changeCollapse = inject<() => void>('changeCollapse')
 const logOut = () => {
   store.log_out()
   tagsStore.clearTag()
-  router.push({path: '/login'})
+  router.push({ path: '/login' })
 }
 </script>
 <template>
@@ -26,7 +26,13 @@ const logOut = () => {
         <el-avatar :size="40" />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="logOut">Log Out</el-dropdown-item>
+            <el-dropdown-item class="dropdown-item">
+              <router-link to="/">Dashboard</router-link>
+              </el-dropdown-item>
+            <el-dropdown-item class="dropdown-item">
+              <a target="_blank" href="https://github.com/LiTianl/vue3-elementPlus-template">GitHub</a>
+              </el-dropdown-item>
+            <el-dropdown-item divided @click="logOut">Log Out</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -63,6 +69,18 @@ const logOut = () => {
 
   .el-avatar {
     cursor: pointer;
+  }
+
+}
+
+.dropdown-item {
+  a {
+    color: inherit;
+    text-decoration: none;
+    display:flex;
+    width: 100%;
+    margin: -5px -16px;
+    padding: 5px 16px;
   }
 }
 </style>

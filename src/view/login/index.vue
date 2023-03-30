@@ -17,7 +17,7 @@
           show-password />
       </el-form-item>
       <el-form-item class="from-item">
-        <el-button class="login" @click="submitForm(formRef)" v-loading="loading">log in</el-button>
+        <el-button class="login"  @click="submitForm(formRef)" v-loading="loading">log in</el-button>
       </el-form-item>
       <el-form-item class="from-item-ots">
         <el-button class="btn submits frgt-pass">Forgot Password</el-button>
