@@ -21,7 +21,7 @@
       </el-form-item>
       <el-form-item class="from-item-ots">
         <el-button class="btn submits frgt-pass">Forgot Password</el-button>
-        <el-button class="btn submits sign-up">Sign Up </el-button>
+        <el-button class="btn submits sign-up" >Sign Up </el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -64,6 +64,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     }
   })
 }
+
 </script>
 <style lang="scss">
 .overlay {

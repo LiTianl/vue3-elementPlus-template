@@ -14,10 +14,4 @@ Object.entries(comp).forEach(([key, component]) => {
   app.component(key, component)
 })
 
-
-import { setupProdMockServer } from '../mock'
-if (process.env.NODE_ENV === 'production'){
-  setupProdMockServer()
-}
-
 app.use(pinia).use(router).mount('#app')

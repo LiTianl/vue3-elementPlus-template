@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock'
 
-const  users = {
+const users = {
   'admin-token': {
     roles: ['admin'],
     introduction: 'I am a Super Admin',
@@ -22,7 +22,7 @@ export default [
     statusCode: 200,
     response: ({ body }) => {
       const { userName, passWord } = body
-      if ((userName === 'admin'|| userName === 'editor')&& passWord === '123456') {
+      if ((userName === 'admin' || userName === 'editor') && passWord === '123456') {
         return {
           code: 200,
           message: 'success',
@@ -39,13 +39,13 @@ export default [
     }
   }, {
     url: '/api/userinfo',
-    method: 'GET',
+    method: 'get',
     timeout: 1000,
     statusCode: 200,
     response: config => {
       const { token } = config.query
       const info = users[token]
-      if (!info){
+      if (!info) {
         return {
           code: 500,
           message: 'Login failed, unable to get user details.'
@@ -55,6 +55,19 @@ export default [
         code: 200,
         message: 'Login successful',
         data: info
+      }
+    }
+  },
+  {
+    url: '/api/test',
+    method: 'get',
+    timeout: 1000,
+    statusCode: 200,
+    response: config => {
+      return {
+        code: 200,
+        message: 'Login successful',
+        data: users['admin-token']
       }
     }
   }

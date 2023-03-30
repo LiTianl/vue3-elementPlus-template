@@ -16,12 +16,13 @@ export default defineConfig({
     vue(),
     viteCompression(),
     viteMockServe({
+      ignore: /^_/,
       mockPath: 'mock',
       localEnabled: true,
-      prodEnabled: false,
+      prodEnabled: true,
       supportTs: true,
       injectCode: `
-          import { setupProdMockServer } from '../mock/index.ts';
+          import { setupProdMockServer } from '../mock/_index.ts';
           setupProdMockServer();
         `,
       watchFiles: true
